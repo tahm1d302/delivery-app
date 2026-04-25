@@ -16,328 +16,136 @@
     --accent: #2563eb;
     --accent-light: #eff6ff;
     --danger: #dc2626;
-    --danger-light: #fef2f2;
     --radius: 14px;
     --radius-sm: 8px;
   }
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding-bottom: 40px;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh; padding-bottom: 40px;
   }
 
   header {
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    padding: 18px 20px 14px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    background: var(--card); border-bottom: 1px solid var(--border);
+    padding: 18px 20px 14px; position: sticky; top: 0; z-index: 10;
   }
-
-  header h1 {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-  }
-
-  header p {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
+  header h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+  header p  { font-size: 13px; color: var(--muted); margin-top: 2px; }
 
   .content { padding: 16px; max-width: 520px; margin: 0 auto; }
 
-  /* Add form */
   .add-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    padding: 16px;
-    margin-bottom: 20px;
+    background: var(--card); border-radius: var(--radius);
+    border: 1px solid var(--border); padding: 16px; margin-bottom: 20px;
   }
-
   .add-card h2 {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+    font-size: 13px; font-weight: 600; color: var(--muted);
+    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px;
   }
-
   .field { margin-bottom: 10px; }
-
-  .field label {
-    display: block;
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 4px;
-  }
-
+  .field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
   .field input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    font-size: 15px;
-    font-family: inherit;
-    background: var(--bg);
-    color: var(--text);
-    outline: none;
-    -webkit-appearance: none;
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); font-size: 15px; font-family: inherit;
+    background: var(--bg); color: var(--text); outline: none; -webkit-appearance: none;
   }
-
-  .field input:focus {
-    border-color: var(--accent);
-    background: #fff;
-  }
+  .field input:focus { border-color: var(--accent); background: #fff; }
 
   .btn-primary {
-    width: 100%;
-    padding: 12px;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius-sm);
-    font-size: 15px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    margin-top: 4px;
-    -webkit-tap-highlight-color: transparent;
+    width: 100%; padding: 12px; background: var(--accent); color: #fff;
+    border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600;
+    font-family: inherit; cursor: pointer; margin-top: 4px; -webkit-tap-highlight-color: transparent;
   }
-
   .btn-primary:active { opacity: 0.85; }
 
-  /* List header */
-  .list-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-
-  .list-header span {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
+  .list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .list-header span { font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
   .btn-reset-all {
-    font-size: 12px;
-    color: var(--danger);
-    background: transparent;
-    border: 1px solid #fca5a5;
-    border-radius: 6px;
-    padding: 4px 10px;
-    cursor: pointer;
-    font-family: inherit;
-    -webkit-tap-highlight-color: transparent;
+    font-size: 12px; color: var(--danger); background: transparent;
+    border: 1px solid #fca5a5; border-radius: 6px; padding: 4px 10px;
+    cursor: pointer; font-family: inherit; -webkit-tap-highlight-color: transparent;
   }
 
-  /* Customer cards */
   .customer-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    padding: 14px 16px;
-    margin-bottom: 12px;
+    background: var(--card); border-radius: var(--radius);
+    border: 1px solid var(--border); padding: 14px 16px; margin-bottom: 12px;
   }
-
-  .card-top {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-
+  .card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
   .avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--accent-light);
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    font-weight: 700;
-    flex-shrink: 0;
+    width: 44px; height: 44px; border-radius: 50%; background: var(--accent-light);
+    color: var(--accent); display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700; flex-shrink: 0;
   }
-
   .card-info { flex: 1; min-width: 0; }
-
-  .card-name {
-    font-size: 16px;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .card-addr {
-    font-size: 12px;
-    color: var(--muted);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-top: 2px;
-  }
-
+  .card-name { font-size: 16px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-addr { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
   .count-badge {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 4px 10px;
-    font-size: 13px;
-    color: var(--muted);
-    white-space: nowrap;
-    flex-shrink: 0;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 20px;
+    padding: 4px 10px; font-size: 13px; color: var(--muted); white-space: nowrap; flex-shrink: 0;
   }
-
-  .count-badge strong {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-  }
+  .count-badge strong { font-size: 15px; font-weight: 700; color: var(--text); }
 
   .card-actions { display: flex; gap: 8px; }
-
   .btn-deliver {
-    flex: 1;
-    padding: 10px;
-    background: var(--accent-light);
-    color: var(--accent);
-    border: 1px solid #bfdbfe;
-    border-radius: var(--radius-sm);
-    font-size: 14px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+    flex: 1; padding: 10px; background: var(--accent-light); color: var(--accent);
+    border: 1px solid #bfdbfe; border-radius: var(--radius-sm); font-size: 14px;
+    font-weight: 600; font-family: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent;
   }
-
   .btn-deliver:active { opacity: 0.75; }
-
-  .btn-reset {
-    padding: 10px 12px;
-    background: transparent;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    font-size: 13px;
-    font-family: inherit;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+  .btn-sm {
+    padding: 10px 12px; background: transparent; border-radius: var(--radius-sm);
+    font-size: 13px; font-family: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; border: 1px solid;
   }
+  .btn-sm-muted  { color: var(--muted);   border-color: var(--border); }
+  .btn-sm-danger { color: var(--danger);  border-color: #fca5a5; }
+  .btn-sm:active { opacity: 0.7; }
 
-  .btn-remove {
-    padding: 10px 12px;
-    background: transparent;
-    color: var(--danger);
-    border: 1px solid #fca5a5;
-    border-radius: var(--radius-sm);
-    font-size: 13px;
-    font-family: inherit;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .btn-reset:active, .btn-remove:active { opacity: 0.7; }
-
-  /* Log */
-  .log {
-    margin-top: 12px;
-    border-top: 1px solid var(--border);
-    padding-top: 10px;
-  }
-
-  .log-title {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .log-entry {
-    font-size: 12px;
-    color: var(--muted);
-    padding: 4px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
+  .log { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 10px; }
+  .log-title { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; }
+  .log-entry { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); }
   .log-entry:last-child { border-bottom: none; }
-
-  /* Empty */
-  .empty {
-    text-align: center;
-    padding: 40px 0;
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  /* Modal */
-  .modal-bg {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-
-  .modal-bg.open { display: flex; }
-
-  .modal {
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 20px;
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
-  }
-
-  .modal p {
-    font-size: 15px;
-    margin-bottom: 16px;
-    color: var(--text);
-    line-height: 1.5;
-  }
-
-  .modal-btns { display: flex; gap: 10px; }
-
-  .modal-btns button {
-    flex: 1;
-    padding: 11px;
-    border-radius: var(--radius-sm);
-    font-size: 14px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
+  .log-time { flex: 1; font-size: 12px; color: var(--muted); }
+  .log-btns { display: flex; gap: 5px; flex-shrink: 0; }
+  .btn-log {
+    font-size: 11px; padding: 3px 8px; border-radius: 5px;
+    cursor: pointer; font-family: inherit; border: 1px solid; background: transparent;
     -webkit-tap-highlight-color: transparent;
   }
+  .btn-log-edit { color: var(--accent); border-color: #bfdbfe; }
+  .btn-log-del  { color: var(--danger); border-color: #fca5a5; }
+  .btn-log:active { opacity: 0.65; }
 
-  .modal-confirm {
-    background: var(--danger);
-    color: #fff;
-    border: none;
-  }
+  .empty { text-align: center; padding: 40px 0; color: var(--muted); font-size: 14px; }
 
-  .modal-cancel {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
+  /* Modals */
+  .modal-bg {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+    z-index: 100; align-items: center; justify-content: center; padding: 20px;
   }
+  .modal-bg.open { display: flex; }
+  .modal-box {
+    background: var(--card); border-radius: var(--radius);
+    padding: 20px; width: 100%; max-width: 310px;
+  }
+  .modal-box p { font-size: 15px; margin-bottom: 14px; color: var(--text); line-height: 1.5; text-align: center; }
+  .modal-box h3 { font-size: 15px; font-weight: 600; margin-bottom: 14px; }
+  .modal-row { display: flex; gap: 10px; }
+  .modal-row button {
+    flex: 1; padding: 11px; border-radius: var(--radius-sm); font-size: 14px;
+    font-weight: 600; font-family: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  }
+  .btn-confirm { background: var(--danger); color: #fff; border: none; }
+  .btn-cancel  { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-save    { background: var(--accent); color: #fff; border: none; }
+
+  .dt-input {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); font-size: 14px; font-family: inherit;
+    background: var(--bg); color: var(--text); outline: none; margin-bottom: 14px;
+    -webkit-appearance: none;
+  }
+  .dt-input:focus { border-color: var(--accent); }
 </style>
 </head>
 <body>
@@ -348,7 +156,6 @@
 </header>
 
 <div class="content">
-
   <div class="add-card">
     <h2>Add customer</h2>
     <div class="field">
@@ -364,50 +171,59 @@
 
   <div class="list-header">
     <span id="list-label">Customers</span>
-    <button class="btn-reset-all" onclick="confirmAction('reset-all', null)">Reset all</button>
+    <button class="btn-reset-all" onclick="openConfirm('Reset all delivery counts?','Reset all',()=>{customers.forEach(c=>{c.count=0;c.log=[]});save();render();})">Reset all</button>
   </div>
 
   <div id="customer-list"></div>
   <div id="empty" class="empty" style="display:none">No customers yet — add one above</div>
-
 </div>
 
-<!-- Modal -->
-<div class="modal-bg" id="modal">
-  <div class="modal">
-    <p id="modal-msg">Are you sure?</p>
-    <div class="modal-btns">
-      <button class="modal-confirm" id="modal-confirm-btn">Confirm</button>
-      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+<!-- Confirm modal -->
+<div class="modal-bg" id="confirm-modal">
+  <div class="modal-box">
+    <p id="confirm-msg"></p>
+    <div class="modal-row">
+      <button class="btn-confirm" id="confirm-ok">Confirm</button>
+      <button class="btn-cancel" onclick="closeConfirm()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit modal -->
+<div class="modal-bg" id="edit-modal">
+  <div class="modal-box">
+    <h3>Edit delivery time</h3>
+    <input type="datetime-local" id="edit-dt" class="dt-input" />
+    <div class="modal-row">
+      <button class="btn-save" onclick="saveEdit()">Save</button>
+      <button class="btn-cancel" onclick="closeEdit()">Cancel</button>
     </div>
   </div>
 </div>
 
 <script>
-const STORAGE_KEY = 'delivery_tracker_v1';
+const KEY = 'delivery_tracker_v2';
 let customers = [];
-let pendingAction = null;
+let editTarget = null;
 
 function load() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) customers = JSON.parse(raw);
-  } catch(e) { customers = []; }
+  try { const r = localStorage.getItem(KEY); if (r) customers = JSON.parse(r); } catch(e) { customers = []; }
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(customers)); }
+
+function initials(n) { return n.trim().split(/\s+/).map(w=>w[0]).join('').toUpperCase().slice(0,2); }
+
+function fmt(ts) {
+  return new Date(ts).toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
 }
 
-function save() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(customers));
+function toLocal(ts) {
+  const d = new Date(ts), pad = n => String(n).padStart(2,'0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
 }
 
-function initials(name) {
-  return name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0,2);
-}
-
-function fmt(d) {
-  return new Date(d).toLocaleString('en-GB', {
-    day: '2-digit', month: 'short', year: 'numeric',
-    hour: '2-digit', minute: '2-digit'
-  });
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 function addCustomer() {
@@ -417,8 +233,7 @@ function addCustomer() {
   customers.push({ id: Date.now(), name, addr, count: 0, log: [] });
   document.getElementById('inp-name').value = '';
   document.getElementById('inp-addr').value = '';
-  save();
-  render();
+  save(); render();
 }
 
 function deliver(id) {
@@ -426,64 +241,51 @@ function deliver(id) {
   if (!c) return;
   c.count++;
   c.log.unshift(Date.now());
-  if (c.log.length > 8) c.log = c.log.slice(0, 8);
-  save();
-  render();
+  save(); render();
 }
 
-function confirmAction(type, id) {
-  const modal = document.getElementById('modal');
-  const msg = document.getElementById('modal-msg');
-  const btn = document.getElementById('modal-confirm-btn');
-
-  if (type === 'reset-all') {
-    if (!customers.length) return;
-    msg.textContent = 'Reset all delivery counts?';
-    btn.textContent = 'Reset all';
-    btn.style.background = '#dc2626';
-    pendingAction = () => {
-      customers.forEach(c => { c.count = 0; c.log = []; });
-      save(); render();
-    };
-  } else if (type === 'reset-one') {
-    const c = customers.find(x => x.id === id);
-    msg.textContent = 'Reset deliveries for ' + (c ? c.name : 'this customer') + '?';
-    btn.textContent = 'Reset';
-    btn.style.background = '#dc2626';
-    pendingAction = () => {
-      if (c) { c.count = 0; c.log = []; }
-      save(); render();
-    };
-  } else if (type === 'remove') {
-    const c = customers.find(x => x.id === id);
-    msg.textContent = 'Remove ' + (c ? c.name : 'this customer') + '? This cannot be undone.';
-    btn.textContent = 'Remove';
-    btn.style.background = '#dc2626';
-    pendingAction = () => {
-      customers = customers.filter(x => x.id !== id);
-      save(); render();
-    };
-  }
-
-  modal.classList.add('open');
-  btn.onclick = () => { if (pendingAction) pendingAction(); closeModal(); };
+/* Confirm modal */
+function openConfirm(msg, label, action) {
+  document.getElementById('confirm-msg').textContent = msg;
+  const btn = document.getElementById('confirm-ok');
+  btn.textContent = label;
+  btn.onclick = () => { action(); closeConfirm(); };
+  document.getElementById('confirm-modal').classList.add('open');
 }
+function closeConfirm() { document.getElementById('confirm-modal').classList.remove('open'); }
 
-function closeModal() {
-  document.getElementById('modal').classList.remove('open');
-  pendingAction = null;
+/* Edit modal */
+function openEdit(cid, idx) {
+  const c = customers.find(x => x.id === cid);
+  if (!c) return;
+  editTarget = { cid, idx };
+  document.getElementById('edit-dt').value = toLocal(c.log[idx]);
+  document.getElementById('edit-modal').classList.add('open');
+}
+function saveEdit() {
+  const val = document.getElementById('edit-dt').value;
+  if (!val || !editTarget) return;
+  const c = customers.find(x => x.id === editTarget.cid);
+  if (c) c.log[editTarget.idx] = new Date(val).getTime();
+  closeEdit(); save(); render();
+}
+function closeEdit() { document.getElementById('edit-modal').classList.remove('open'); editTarget = null; }
+
+/* Delete a single delivery entry */
+function deleteDelivery(cid, idx) {
+  openConfirm('Remove this delivery entry?', 'Remove', () => {
+    const c = customers.find(x => x.id === cid);
+    if (c) { c.log.splice(idx, 1); c.count = Math.max(0, c.count - 1); }
+    save(); render();
+  });
 }
 
 function render() {
   const list = document.getElementById('customer-list');
-  const empty = document.getElementById('empty');
-  const label = document.getElementById('list-label');
-  const sub = document.getElementById('header-sub');
-
   const n = customers.length;
-  label.textContent = n ? `Customers (${n})` : 'Customers';
-  sub.textContent = n === 1 ? '1 customer' : n + ' customers';
-  empty.style.display = n ? 'none' : 'block';
+  document.getElementById('list-label').textContent = n ? `Customers (${n})` : 'Customers';
+  document.getElementById('header-sub').textContent = n === 1 ? '1 customer' : n + ' customers';
+  document.getElementById('empty').style.display = n ? 'none' : 'block';
 
   list.innerHTML = customers.map(c => `
     <div class="customer-card">
@@ -497,24 +299,27 @@ function render() {
       </div>
       <div class="card-actions">
         <button class="btn-deliver" onclick="deliver(${c.id})">+ Record delivery</button>
-        <button class="btn-reset" onclick="confirmAction('reset-one',${c.id})">Reset</button>
-        <button class="btn-remove" onclick="confirmAction('remove',${c.id})">Remove</button>
+        <button class="btn-sm btn-sm-muted"  onclick="openConfirm('Reset deliveries for ${esc(c.name)}?','Reset',()=>{const c=customers.find(x=>x.id===${c.id});if(c){c.count=0;c.log=[];}save();render();})">Reset</button>
+        <button class="btn-sm btn-sm-danger" onclick="openConfirm('Remove ${esc(c.name)}? This cannot be undone.','Remove',()=>{customers=customers.filter(x=>x.id!==${c.id});save();render();})">Remove</button>
       </div>
       ${c.log.length ? `
         <div class="log">
-          <div class="log-title">Recent deliveries</div>
-          ${c.log.map(t => `<div class="log-entry">${fmt(t)}</div>`).join('')}
+          <div class="log-title">Delivery log</div>
+          ${c.log.map((ts,i) => `
+            <div class="log-entry">
+              <span class="log-time">${fmt(ts)}</span>
+              <div class="log-btns">
+                <button class="btn-log btn-log-edit" onclick="openEdit(${c.id},${i})">Edit</button>
+                <button class="btn-log btn-log-del"  onclick="deleteDelivery(${c.id},${i})">Delete</button>
+              </div>
+            </div>
+          `).join('')}
         </div>` : ''}
     </div>
   `).join('');
 }
 
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-load();
-render();
+load(); render();
 </script>
 </body>
 </html>
