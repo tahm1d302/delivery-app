@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>Delivery Tracker</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f4f0;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --muted: #888;
+    --border: #e0ddd8;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --danger: #dc2626;
+    --danger-light: #fef2f2;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+
+  header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 20px 14px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+
+  header p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .content { padding: 16px; max-width: 520px; margin: 0 auto; }
+
+  /* Add form */
+  .add-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .add-card h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .field { margin-bottom: 10px; }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .field input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: inherit;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  .field input:focus {
+    border-color: var(--accent);
+    background: #fff;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 4px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-primary:active { opacity: 0.85; }
+
+  /* List header */
+  .list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .list-header span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .btn-reset-all {
+    font-size: 12px;
+    color: var(--danger);
+    background: transparent;
+    border: 1px solid #fca5a5;
+    border-radius: 6px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Customer cards */
+  .customer-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .card-info { flex: 1; min-width: 0; }
+
+  .card-name {
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-addr {
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
+  }
+
+  .count-badge {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 13px;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .count-badge strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .card-actions { display: flex; gap: 8px; }
+
+  .btn-deliver {
+    flex: 1;
+    padding: 10px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-deliver:active { opacity: 0.75; }
+
+  .btn-reset {
+    padding: 10px 12px;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-remove {
+    padding: 10px 12px;
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid #fca5a5;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-reset:active, .btn-remove:active { opacity: 0.7; }
+
+  /* Log */
+  .log {
+    margin-top: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+  }
+
+  .log-title {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .log-entry {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .log-entry:last-child { border-bottom: none; }
+
+  /* Empty */
+  .empty {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  /* Modal */
+  .modal-bg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-bg.open { display: flex; }
+
+  .modal {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  .modal p {
+    font-size: 15px;
+    margin-bottom: 16px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .modal-btns { display: flex; gap: 10px; }
+
+  .modal-btns button {
+    flex: 1;
+    padding: 11px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .modal-confirm {
+    background: var(--danger);
+    color: #fff;
+    border: none;
+  }
+
+  .modal-cancel {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Delivery Tracker</h1>
+  <p id="header-sub">0 customers</p>
+</header>
+
+<div class="content">
+
+  <div class="add-card">
+    <h2>Add customer</h2>
+    <div class="field">
+      <label>Name</label>
+      <input type="text" id="inp-name" placeholder="Full name" />
+    </div>
+    <div class="field">
+      <label>Address</label>
+      <input type="text" id="inp-addr" placeholder="Delivery address" />
+    </div>
+    <button class="btn-primary" onclick="addCustomer()">+ Add customer</button>
+  </div>
+
+  <div class="list-header">
+    <span id="list-label">Customers</span>
+    <button class="btn-reset-all" onclick="confirmAction('reset-all', null)">Reset all</button>
+  </div>
+
+  <div id="customer-list"></div>
+  <div id="empty" class="empty" style="display:none">No customers yet — add one above</div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <p id="modal-msg">Are you sure?</p>
+    <div class="modal-btns">
+      <button class="modal-confirm" id="modal-confirm-btn">Confirm</button>
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'delivery_tracker_v1';
+let customers = [];
+let pendingAction = null;
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) customers = JSON.parse(raw);
+  } catch(e) { customers = []; }
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(customers));
+}
+
+function initials(name) {
+  return name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0,2);
+}
+
+function fmt(d) {
+  return new Date(d).toLocaleString('en-GB', {
+    day: '2-digit', month: 'short', year: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  });
+}
+
+function addCustomer() {
+  const name = document.getElementById('inp-name').value.trim();
+  const addr = document.getElementById('inp-addr').value.trim();
+  if (!name) { document.getElementById('inp-name').focus(); return; }
+  customers.push({ id: Date.now(), name, addr, count: 0, log: [] });
+  document.getElementById('inp-name').value = '';
+  document.getElementById('inp-addr').value = '';
+  save();
+  render();
+}
+
+function deliver(id) {
+  const c = customers.find(x => x.id === id);
+  if (!c) return;
+  c.count++;
+  c.log.unshift(Date.now());
+  if (c.log.length > 8) c.log = c.log.slice(0, 8);
+  save();
+  render();
+}
+
+function confirmAction(type, id) {
+  const modal = document.getElementById('modal');
+  const msg = document.getElementById('modal-msg');
+  const btn = document.getElementById('modal-confirm-btn');
+
+  if (type === 'reset-all') {
+    if (!customers.length) return;
+    msg.textContent = 'Reset all delivery counts?';
+    btn.textContent = 'Reset all';
+    btn.style.background = '#dc2626';
+    pendingAction = () => {
+      customers.forEach(c => { c.count = 0; c.log = []; });
+      save(); render();
+    };
+  } else if (type === 'reset-one') {
+    const c = customers.find(x => x.id === id);
+    msg.textContent = 'Reset deliveries for ' + (c ? c.name : 'this customer') + '?';
+    btn.textContent = 'Reset';
+    btn.style.background = '#dc2626';
+    pendingAction = () => {
+      if (c) { c.count = 0; c.log = []; }
+      save(); render();
+    };
+  } else if (type === 'remove') {
+    const c = customers.find(x => x.id === id);
+    msg.textContent = 'Remove ' + (c ? c.name : 'this customer') + '? This cannot be undone.';
+    btn.textContent = 'Remove';
+    btn.style.background = '#dc2626';
+    pendingAction = () => {
+      customers = customers.filter(x => x.id !== id);
+      save(); render();
+    };
+  }
+
+  modal.classList.add('open');
+  btn.onclick = () => { if (pendingAction) pendingAction(); closeModal(); };
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  pendingAction = null;
+}
+
+function render() {
+  const list = document.getElementById('customer-list');
+  const empty = document.getElementById('empty');
+  const label = document.getElementById('list-label');
+  const sub = document.getElementById('header-sub');
+
+  const n = customers.length;
+  label.textContent = n ? `Customers (${n})` : 'Customers';
+  sub.textContent = n === 1 ? '1 customer' : n + ' customers';
+  empty.style.display = n ? 'none' : 'block';
+
+  list.innerHTML = customers.map(c => `
+    <div class="customer-card">
+      <div class="card-top">
+        <div class="avatar">${initials(c.name)}</div>
+        <div class="card-info">
+          <div class="card-name">${esc(c.name)}</div>
+          <div class="card-addr">${esc(c.addr) || 'No address'}</div>
+        </div>
+        <div class="count-badge"><strong>${c.count}</strong> delivered</div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-deliver" onclick="deliver(${c.id})">+ Record delivery</button>
+        <button class="btn-reset" onclick="confirmAction('reset-one',${c.id})">Reset</button>
+        <button class="btn-remove" onclick="confirmAction('remove',${c.id})">Remove</button>
+      </div>
+      ${c.log.length ? `
+        <div class="log">
+          <div class="log-title">Recent deliveries</div>
+          ${c.log.map(t => `<div class="log-entry">${fmt(t)}</div>`).join('')}
+        </div>` : ''}
+    </div>
+  `).join('');
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+load();
+render();
+</script>
+</body>
+</html>
